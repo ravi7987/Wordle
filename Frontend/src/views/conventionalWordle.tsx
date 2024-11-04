@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import '../assets/css/main.css';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid2';
@@ -16,6 +16,9 @@ import {
 import { useAppDispatch } from '../redux/store';
 import { getSettings } from '../services/settings';
 
+/**
+ * @description renders the wordle game page, with input boxes to guess the word and instructions
+ */
 function ConventionalWordle() {
     const dispatch = useAppDispatch();
     const numberOfAttempts = useSelector(fetchNumberOfattemptsFromStore);
@@ -24,6 +27,9 @@ function ConventionalWordle() {
     const perfectMatch = useSelector(fetchPerfectMatchAttributeFromStore);
     const attemptsExpired = useSelector(fetchAttemptsExpiredAttributeFromStore);
 
+    /**
+     * @description prompt the settings to reset the game of either right word is guessed or all attempts are exhausted
+     */
     useEffect(() => {
         if (perfectMatch || attemptsExpired) {
             setTimeout(() => {
@@ -32,6 +38,9 @@ function ConventionalWordle() {
         }
     }, [perfectMatch, attemptsExpired]);
 
+    /**
+     * @description renders the rows of the wordle input. Number of rows are dependent upon number of attempts configured in the settings
+     */
     const wordleBundle = () => {
         const rows = [];
         for (let i = 0; i < numberOfAttempts; i++) {

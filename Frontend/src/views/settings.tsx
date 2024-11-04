@@ -192,7 +192,7 @@ function Settings() {
                                                             <TableCell align="right">
                                                                 <Button
                                                                     variant="outlined"
-                                                                    onClick={(event) =>
+                                                                    onClick={() =>
                                                                         removeCandidate(candidate)
                                                                     }
                                                                 >

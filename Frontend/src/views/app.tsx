@@ -1,9 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import '../assets/css/main.css';
 import { Outlet, Link } from 'react-router-dom';
 import { useAppDispatch } from '../redux/store';
 import { getSettings } from '../services/settings';
 
+/**
+ * @description renders the wordle application page with header and introduction
+ */
 function App() {
     const dispatch = useAppDispatch();
 
@@ -24,15 +27,6 @@ function App() {
                             <li>
                                 <Link to="/settings">Settings</Link>
                             </li>
-                            {/* <li>
-                <a href="#about">About</a>
-              </li>
-              <li>
-                <a href="#services">Services</a>
-              </li>
-              <li>
-                <a href="#contact">Contact</a>
-              </li> */}
                         </ul>
                     </nav>
                 </div>
