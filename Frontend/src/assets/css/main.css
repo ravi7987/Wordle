@@ -1,0 +1,223 @@
+
+/* main page */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+header {
+    background-color: #333;
+    color: white;
+    padding: 10px 0;
+}
+
+.container {
+    width: 90%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav {
+    position: relative;
+}
+
+.nav-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+.nav-list li {
+    margin: 0 15px;
+}
+
+.nav-list a {
+    color: white;
+    text-decoration: none;
+}
+
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.bar {
+    height: 3px;
+    width: 25px;
+    background-color: white;
+    margin: 4px 0;
+}
+
+.home {
+    margin: 15px;
+}
+
+.heading {
+    color: white;
+}
+
+
+/* card */
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+}
+
+.card {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    width: 300px;
+    transition: transform 0.2s;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.card-image {
+    width: 100%;
+    height: auto;
+}
+
+.card-content {
+    padding: 20px;
+}
+
+.card-title {
+    margin: 0 0 10px;
+    font-size: 1.5em;
+}
+
+.card-description {
+    margin: 0 0 15px;
+    color: #555;
+}
+
+.card-button {
+    text-decoration: none;
+    color: white;
+    background-color: #333;;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.card-button:hover {
+    background-color: #0056b3;
+}
+
+
+/* wordle row */
+.otp-body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    /* background-color: #f4f4f4; */
+}
+
+.otp-container {
+    display: flex;
+    gap: 10px;
+}
+
+.otp-input {
+    width: 50px;
+    height: 50px;
+    font-size: 24px;
+    text-align: center;
+    border: 2px solid #007bff;
+    border-radius: 5px;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.otp-input:focus {
+    border-color: #0056b3;
+}
+
+.otp-input:disabled {
+    background-color: #e9ecef;
+    color: #6c757d;
+}
+
+.white {
+    background-color: white;
+}
+
+.green {
+    background-color: rgb(159, 212, 175);
+}
+
+.yellow {
+    background-color: rgb(241, 244, 188);
+}
+
+/* settings page */
+.input-box {
+    justify-content: center;
+    line-height: 1.75;
+    border-radius: 4px;
+    padding: 5px 15px;
+    border: 1px solid
+}
+
+.attributes {
+    text-align: center;
+    padding: 5px 15px;
+    margin: auto;
+}
+
+.attributes-container {
+    margin: 50px 0px;
+}
+
+.wordle-top {
+    height: 10vh;
+}
+
+.wordle-bottom {
+    background-color: #f4f4f4;
+    padding: 5px 15px;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .card {
+        width: 90%;
+    }
+}
+
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .nav-list {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 50px;
+        left: 0;
+        background-color: #333;
+        width: 100%;
+    }
+
+    .nav-list.active {
+        display: flex;
+    }
+
+    .menu-toggle {
+        display: flex;
+    }
+}
+
