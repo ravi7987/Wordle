@@ -19,3 +19,13 @@ single document can be inserted in the collection named settings as provided bel
 How to run the game: For running server, please make sure that node version 18.0 or more is already installed on the system. direct the prompt to the server folder of the repository. Run command "npm run dev" to start the development server. Insert the document provided, as in the last section, in the settings collection of local mongoDB instance running on the system. For running client side, direct prompt to frontend folder of the repository and run command "npm run dev", client side will be running on localhost:5173 of the system.
 
 Player can configure the number of attempts allowed in one single game to guess the word. Player can also configure the list of candidate words, from which one of the candidate word is randomly chosen by the system to be answer for the respective iteration of the game.
+
+Caution: if the client side is unable to connect to the server, then pls check client or frontend prompt for port on which client is running for example: localhost:5173, then check this port number in server/src/Loaders/ExpressLoader.ts at
+
+/_ cors configuration _/
+this.express.use(Cors({
+credentials: true,
+origin: ["http://localhost:5173"]
+}));
+
+Check for origin attribute in above object, this address must match to the url on which frontend or client is running

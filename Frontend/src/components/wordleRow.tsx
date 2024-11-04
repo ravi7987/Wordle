@@ -1,21 +1,25 @@
 import React from 'react';
 import { useAppDispatch } from '../redux/store';
-import { fetchIdDataFromStore } from '../redux/slices/contents';
+import { fetchDataFromStore, fetchIdDataFromStore, saveAlphabet } from '../redux/slices/contents';
 import { useSelector } from 'react-redux';
 import { processInput } from '../services/conventionalWordle';
+import { ORIGIN } from '../constants/shared';
+import { processAdvancedInput } from '../services/advancedWordle';
 
 type TWordleRow = {
     i: number;
     dataRow: String[] | any[];
     classValueRow: String[];
+    origin: String;
 };
 
 /**
  * @description renders the wordle game single row input bundle to enter five letters to guess the five letter word
  */
-function ConventionalWordle({ i, dataRow, classValueRow }: TWordleRow) {
+function ConventionalWordle({ i, dataRow, classValueRow, origin }: TWordleRow) {
     const dispatch = useAppDispatch();
     const documentId = useSelector(fetchIdDataFromStore);
+    const wordleRow = useSelector(fetchDataFromStore);
 
     /**
      * @description  adjust focus to next input box once letter in inserted via keyboard input event
@@ -55,14 +59,31 @@ function ConventionalWordle({ i, dataRow, classValueRow }: TWordleRow) {
         const unparsedId = id.split('-')[1];
         const parsedId = parseInt(unparsedId);
         if (isNaN(parsedId)) {
+            console.log('not a number');
             return;
         }
-        try {
+
+        if (origin === ORIGIN.CONVENTIONAL) {
+            try {
+                dispatch(
+                    processInput({ id: documentId, word: data, index: parsedId - 1, rowIndex: i }),
+                );
+            } catch (error: any) {
+                console.log(error);
+            }
+        } else if (parsedId - 1 < 4 && origin === ORIGIN.ADVANCED) {
+            dispatch(saveAlphabet({ rowIndex: i, columnIndex: parsedId - 1, value: data }));
+        } else if (parsedId - 1 === 4 && origin === ORIGIN.ADVANCED) {
+            dispatch(saveAlphabet({ rowIndex: i, columnIndex: parsedId - 1, value: data }));
+            let row = [...wordleRow[i]];
+            row[4] = data;
             dispatch(
-                processInput({ id: documentId, word: data, index: parsedId - 1, rowIndex: i }),
+                processAdvancedInput({
+                    id: documentId,
+                    word: row,
+                    rowIndex: i,
+                }),
             );
-        } catch (error: any) {
-            console.log(error);
         }
     };
 

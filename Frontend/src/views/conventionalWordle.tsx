@@ -15,6 +15,7 @@ import {
 } from '../redux/slices/contents';
 import { useAppDispatch } from '../redux/store';
 import { getSettings } from '../services/settings';
+import { ORIGIN } from '../constants/shared';
 
 /**
  * @description renders the wordle game page, with input boxes to guess the word and instructions
@@ -45,7 +46,13 @@ function ConventionalWordle() {
         const rows = [];
         for (let i = 0; i < numberOfAttempts; i++) {
             rows.push(
-                <WordleRow key={i} i={i} dataRow={data[i]} classValueRow={classValueData[i]} />,
+                <WordleRow
+                    key={i}
+                    i={i}
+                    dataRow={data[i]}
+                    classValueRow={classValueData[i]}
+                    origin={ORIGIN.CONVENTIONAL}
+                />,
             );
         }
         return rows;
