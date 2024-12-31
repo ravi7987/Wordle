@@ -1,0 +1,40 @@
+version: "3.8"
+services:
+  nginx:
+    image: nginx:stable
+    depaends_on:
+      - wordle-server-container
+      - wordle-client-container
+    restart: always
+    volumes:
+      - ./sites-enabled:/etc/nginx/conf.d
+    ports:
+      - "3000:80"
+  wordle-server-container:
+    build:
+      context: ./Server
+      dockerfile: Dockerfile
+
+    ports: 
+      - "5003:5003"
+
+    volumes:
+      - ./Server:/app
+      - /app/node_modules
+
+    env_file:
+      - ./Server/.env
+
+  wordle-client-container:
+    build:
+      context: ./Frontend
+      dockerfile: Dockerfile.prod
+
+    expose:
+      - 80
+
+    volumes:
+      - ./Frontend/src:/app/src
+
+    stdin_open: true
+    tty: true
